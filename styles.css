@@ -1,0 +1,323 @@
+/********* GENERAL STYLES *********/
+:root {
+  --border-radius: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+input:focus,
+input:hover {
+  outline: none;
+}
+
+button,
+input {
+  font-size: 100%;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  user-select: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+header {
+  background-color: #1c274d;
+  width: 100%;
+  color: white;
+  padding: 2rem;
+  font-size: 1.8rem;
+}
+
+main {
+  flex: 1;
+}
+
+dialog {
+  /* 3 lines to center dialog */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  border-radius: var(--border-radius);
+  border: none;
+  box-shadow: 2px 4px 8px rgb(0 0 0 / 0.2);
+  width: max-content;
+
+  &::backdrop {
+    backdrop-filter: blur(10px);
+  }
+
+  & .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0rem 4rem 1.5rem 1.5rem;
+    font-size: 1.3rem;
+    background-color: rgb(255 255 255 / 0.7);
+
+    & .title {
+      text-align: left;
+      width: 100%;
+      padding: 1rem 0;
+    }
+  }
+}
+
+.ellipses-text {
+  white-space: nowrap; /* prevents wrapping to new line*/
+  overflow: hidden; /* hides overflown text */
+  text-overflow: ellipsis; /* adds ellipses inplace of overflowed text*/
+}
+
+.card {
+  --box-shadow-spread: 0px;
+  width: 350px;
+  height: 450px;
+  padding: 20px;
+  font-size: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: 2px 4px 16px var(--box-shadow-spread) rgb(0 0 0 / 0.1);
+  cursor: pointer;
+  transition: all 250ms;
+
+  &:hover {
+    --box-shadow-spread: 15px;
+  }
+
+  &:active {
+    background-color: rgb(0 0 0 / 0.03);
+  }
+}
+
+button {
+  --box-shadow-spread: 0;
+  padding: 1rem 3rem;
+  border: none;
+  background-color: white;
+  border-radius: var(--border-radius);
+  font-size: 1.1rem;
+  box-shadow: 1px 2px 16px var(--box-shadow-spread) rgb(0 0 0 / 0.2);
+  cursor: pointer;
+  transition: all 250ms;
+  &:hover,
+  &:focus {
+    outline: none;
+    --box-shadow-spread: 4px;
+  }
+
+  &:active {
+    --box-shadow-spread: 8px;
+    background-color: rgb(240 240 240);
+  }
+}
+
+.checkbox {
+  --checkbox-width: 1em;
+  --checkbox-height: var(--checkbox-width);
+
+  & label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  & label::before {
+    content: "";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--checkbox-width);
+    height: var(--checkbox-height);
+    border: 1px solid gray;
+    transition: all 80ms ease-in-out;
+  }
+
+  & input:checked + label:before {
+    content: "✔";
+    color: white;
+    background-color: slateblue;
+    text-align: center;
+  }
+
+  & input {
+    position: absolute;
+    opacity: 0;
+  }
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 12px;
+  border: none;
+  box-shadow: 2px 4px 8px rgb(0 0 0 / 0.2);
+  border-radius: var(--border-radius);
+}
+
+footer {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1c274d;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: relative;
+  bottom: 0;
+}
+
+a {
+  text-decoration: none;
+  /* emulates space before link */
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 1ch;
+  }
+}
+
+/********* SPECIFIC STYLES *********/
+
+.library {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 3rem;
+  padding: 3rem;
+}
+
+.book {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative; /*for positioning close icon*/
+
+  &:hover .remove-book {
+    opacity: 1;
+  }
+
+  & .book-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    img {
+      width: 80%;
+    }
+  }
+
+  & .title {
+    text-align: center;
+    font-weight: bold;
+  }
+
+  & .author {
+    color: gray;
+    text-align: center;
+    font-size: 1rem;
+    font-style: italic;
+  }
+
+  & .book-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    .num-pages {
+      color: gray;
+      text-align: end;
+    }
+
+    & .has-read {
+      color: lightcoral;
+    }
+
+    & .already-read {
+      color: darkgreen;
+    }
+  }
+}
+
+dialog#edit-book {
+}
+
+dialog#add-new-book {
+  & form ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+  }
+  & li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    & label {
+      flex: 1;
+      text-align: right;
+    }
+  }
+
+  & li.checkbox {
+    & label {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  & li.action-buttons {
+    justify-content: right;
+  }
+}
+
+.add-book-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  img {
+    width: 80%;
+  }
+}
+
+.remove-book {
+  position: absolute;
+  right: 0;
+  translate: 50% -50%;
+  opacity: 0;
+  cursor: pointer;
+  & img {
+    width: 50px;
+    height: 50px;
+    transition: all 250ms ease-in-out;
+    border-radius: 100%;
+    &:hover,
+    &:focus {
+      background-color: lightgray;
+      transform: scale(0.8);
+    }
+
+    &:active {
+      transform: scale(0.7);
+    }
+  }
+}

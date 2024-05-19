@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="hero">Library Manager</div>
+    </header>
+    <main>
+      <div class="library">
+        <div class="card add-book">
+          <div class="add-book-icon">
+            <img src="images/add.svg" alt="add-icon" />
+          </div>
+        </div>
+        <!-- only to be used as a template for new books books -->
+        <div class="card book" id="book-template" style="display: none">
+          <div class="remove-book">
+            <img src="images/close.svg" alt="remove book" />
+          </div>
+          <div class="book-icon">
+            <img src="images/book.svg" alt="book-icon" />
+          </div>
+          <div class="title ellipses-text">Try entering a very long title like this</div>
+          <div class="author ellipses-text">
+            By <span class="author-name">Who is your fav author?</span>
+          </div>
+          <div class="book-info">
+            <div class="has-read">Not Read</div>
+            <div class="num-pages">1</div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>View code on <a href="#">Github</a></footer>
+
+    <!------------------ Dialogs ------------------->
+    <!-- add new book dialog -->
+    <dialog id="add-new-book">
+      <div class="container">
+        <h2 class="title">Book Details</h2>
+        <div class="content">
+          <form method="dialog" autocomplete="off">
+            <ul>
+              <li>
+                <label for="title"> *Title: </label>
+                <input autofocus type="text" id="title" minlength="2" required />
+              </li>
+              <li>
+                <label for="author"> *Author: </label>
+                <input type="text" id="author" minlength="2" required />
+              </li>
+              <li>
+                <label for="num-pages"> *Number of Pages: </label>
+                <input type="number" id="num-pages" min="1" />
+              </li>
+              <li class="checkbox">
+                <input id="has-read" type="checkbox" />
+                <label for="has-read"> Have you read it? </label>
+              </li>
+              <li class="action-buttons">
+                <button id="cancel" type="submit" formmethod="dialog" formnovalidate>Cancel</button>
+                <button formmethod="dialog" id="ok">Ok</button>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </div>
+    </dialog>
+    <!-- Edit book dialog -->
+    <dialog id="edit-book">
+      <div class="container">
+        <div class="title">Edit Book</div>
+        <div class="checkbox">
+          <input id="edit-has-read" type="checkbox" />
+          <label for="edit-has-read"> Have you read it? </label>
+        </div>
+      </div>
+    </dialog>
+  </body>
+</html>
